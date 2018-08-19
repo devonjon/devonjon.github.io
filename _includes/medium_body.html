@@ -1,0 +1,74 @@
+<body>
+
+<!-- Begin Nav
+	================================================== -->
+	{% include medium_nav.html %}
+<!-- End Nav
+	================================================== -->
+
+<!-- Begin Article
+	================================================== -->
+	<div class="container">
+		<div class="row">
+
+			<!-- Begin Fixed Left Share -->
+			{% include medium_share.html %}
+			<!-- End Fixed Left Share -->
+
+			<!-- Begin Post -->
+			<div class="col-md-8 col-md-offset-2 col-xs-12">
+				<div class="mainheading">
+
+					<!-- Begin Top Meta -->
+					{% include medium_post_meta.html %}
+					<!-- End Top Menta -->
+
+					<h1 class="posttitle">The 6 Glute Exercises You Should Be Doing</h1>
+
+				</div>
+				<!-- Begin Post Content -->
+				{{ page.content }}
+					<!-- End Post Content -->
+
+					<!-- Begin Tags -->
+					<div class="after-post-tags">
+						<ul class="tags">
+							<li><a href="#">Design</a></li>
+							<li><a href="#">Growth Mindset</a></li>
+							<li><a href="#">Productivity</a></li>
+							<li><a href="#">Personal Growth</a></li>
+						</ul>
+					</div>
+					<!-- End Tags -->
+
+				</div>
+				<!-- End Post -->
+
+			</div>
+		</div>
+<!-- End Article
+	================================================== -->
+
+	<div class="hideshare"></div>
+
+<!-- Begin AlertBar
+	================================================== -->
+	<!-- <div class="alertbar">
+		<div class="container text-center">
+			<img class='img-fluid' src="/assets/img/logo.png" alt=""> &nbsp; Never miss a <b>story</b> from us, get weekly updates in your inbox. <a href="#" class="btn subscribe">Get Updates</a>
+		</div>
+	</div> -->
+<!-- End AlertBar
+	================================================== -->
+
+<!-- Begin Footer
+	================================================== -->
+	{% include medium_footer.html %}
+<!-- End Footer
+	================================================== -->
+
+<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	{% include scripts.html %}
+</body>

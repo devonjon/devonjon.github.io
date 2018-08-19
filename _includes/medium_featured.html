@@ -1,0 +1,19 @@
+<section class="featured-posts">
+	<div class="section-title">
+		<h2><span>Featured</span></h2>
+	</div>
+	<div class="card-columns listfeaturedtag">
+
+    {% for feat in site.data.featured %}
+      {% 
+        include medium_featured_card.html 
+        title=feat.title
+        image=feat.image
+        date=feat.date
+        href=feat.href
+        lede=feat.lede
+        time=feat.time
+        %}
+    {% endfor %}
+	</div>
+	</section>
