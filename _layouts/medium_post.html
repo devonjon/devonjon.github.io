@@ -1,47 +1,55 @@
+
+{% assign author = site.data.authors[page.author] %}
+{% assign date =  page.date | date_to_string  %}
+{% assign desc =  page.content | strip_html %}
+{% assign trunc = desc | truncatewords: 100 %}
 <!DOCTYPE html>
-<html lang="en">
-{% include medium_head.html %}
-<body>
-	{% include medium_nav.html %}
-	<div class="container">
-		<div class="row">
-			{% include medium_share.html %}
-			<div class="col-md-8 col-md-offset-2 col-xs-12">
-				<div class="mainheading">
-					{% assign author = site.data.authors[page.author] %}
-					{% assign date =  page.date | date_to_string  %}
-					{% capture words %}
-					{{ page.content | number_of_words | minus: 250 | append: " words" }}
-					{% endcapture %}
-					{% capture time %}
-					{{ words | plus: 250 | divided_by: 180 | append: " minute read" }}
-					{% endcapture %}
-					{%
-						include medium_post_meta.html
-						author_name=author.name
-						author_image=author.image
-						author_description=author.about
-						date=date
-						words=words
-						time=time
-						%}
-					<h1 class="posttitle">{{page.title}}</h1>
+<html lang="en" ⚡>
+{% include medium_post_head.html
+	date=date
+	author=author.name
+	title=page.title
+	description=trunc
+	url=page.url
+	%}
+	<body>
+		{% include medium_nav.html %}
+		<div class="container">
+			<div class="row">
+				{% include medium_share.html %}
+				<div class="col-md-8 col-md-offset-2 col-xs-12">
+					<div class="mainheading">
+						{% capture words %}
+						{{ page.content | number_of_words | minus: 250 | append: " words" }}
+						{% endcapture %}
+						{% capture time %}
+						{{ words | plus: 250 | divided_by: 180 | append: " minute read" }}
+						{% endcapture %}
+						{%
+							include medium_post_meta.html
+							author_name=author.name
+							author_image=author.image
+							author_description=author.about
+							date=date
+							words=words
+							time=time
+							%}
+							<h1 class="posttitle">{{page.title}}</h1>
+						</div>
+						{{ page.content }}
+						<div class="after-post-tags">
+							<ul class="tags">
+								{% for tag in page.tags %}
+								<li><a href="/{{tag}}">{{tag}}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
 				</div>
-					{{ page.content }}
-					<!-- <div class="after-post-tags">
-						<ul class="tags">
-							<li><a href="#">Design</a></li>
-							<li><a href="#">Growth Mindset</a></li>
-							<li><a href="#">Productivity</a></li>
-							<li><a href="#">Personal Growth</a></li>
-						</ul>
-					</div> -->
 			</div>
-		</div>
-	</div>
-		<div class="hideshare"></div>
-		{% include medium_alert.html %}
-		{% include medium_footer.html %}
-		{% include scripts.html %}
-</body>
-</html>
+			<div class="hideshare"></div>
+			{% include medium_alert.html %}
+			{% include medium_footer.html %}
+			{% include scripts.html %}
+		</body>
+		</html>

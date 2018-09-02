@@ -3,19 +3,33 @@
 {% include medium_head.html %}
 <body>
 	{% include medium_nav.html %}
-<div class="container">
-	<div class="mainheading">
-		<h1 class="sitetitle">Enthrone</h1>
-		<p class="lead">
-			 Be The Best Human That You Can Be
-		</p>
-	</div>
+	<div class="container">
+		<div class="mainheading">
+			<h1 class="sitetitle">Enthrone</h1>
+			<p class="lead">
+				Be The Best Human That You Can Be
+			</p>
+		</div>
+		<ul class="post-list">
 
+			{% capture tag %}{{ page.title | slugify }}{% endcapture %}
+
+			{% for post in site.posts %}
+			{% if post.categories contains tag %}
+			<li>
+				<p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+				<h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+				<a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow">Continue reading &rarr;</a>
+			</li>
+			{% endif %}
+			{% endfor %}
+
+		</ul>
 	</div>
-	</section>
-		<div class="hideshare"></div>
-		{% include medium_alert.html %}
-		{% include medium_footer.html %}
-		{% include scripts.html %}
+</section>
+<div class="hideshare"></div>
+{% include medium_alert.html %}
+{% include medium_footer.html %}
+{% include scripts.html %}
 </body>
 </html>
