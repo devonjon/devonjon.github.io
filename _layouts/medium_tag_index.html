@@ -7,29 +7,49 @@
 		<div class="mainheading">
 			<h1 class="sitetitle">Enthrone</h1>
 			<p class="lead">
-				Be The Best Human That You Can Be
+				Be the best human that you can be
 			</p>
 		</div>
-		<ul class="post-list">
+		<section class="recent-posts">
+			<div class="section-title">
+				<h2><span>Workouts</span></h2>
+			</div>
+			<div class="card-columns listrecent">
 
-			{% capture tag %}{{ page.title | slugify }}{% endcapture %}
+				{% capture tag %}{{ page.title | slugify }}{% endcapture %}
 
-			{% for post in site.posts %}
-			{% if post.categories contains tag %}
-			<li>
-				<p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
-				<h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-				<a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow">Continue reading &rarr;</a>
-			</li>
-			{% endif %}
-			{% endfor %}
+				{% for post in site.posts limit: 10 %}
+				{% if post.categories contains tag %}
 
-		</ul>
-	</div>
-</section>
-<div class="hideshare"></div>
-{% include medium_alert.html %}
-{% include medium_footer.html %}
-{% include scripts.html %}
+				{% assign author = site.data.authors[post.author] %}
+				{% assign date =  post.date | date_to_string  %}
+				{% assign desc =  post.content | strip_html %}
+				{% capture words %}
+				{{ post.content | number_of_words | append: " words" }}
+				{% endcapture %}
+				{% capture time %}
+				{{ words | plus: 250 | divided_by: 180 | append: " minute read" }}
+				{% endcapture %}
+				{% include medium_post_card.html 
+					title=post.title
+					author=author
+					image=post.image
+					lede=desc
+					date=date
+					href=post.permalink
+					words=words
+					time=time %}
+					{% endif %}
+				{% endfor %}
+				
+				</div>
+			</section>
+		</div>
+	</section>
+	<div class="hideshare"></div>
+	{% include medium_alert.html %}
+	{% include medium_footer.html %}
+	{% include scripts.html %}
 </body>
 </html>
+<div class="infinite-spinner"></div>

@@ -20,7 +20,7 @@
 				<div class="col-md-8 col-md-offset-2 col-xs-12">
 					<div class="mainheading">
 						{% capture words %}
-						{{ page.content | number_of_words | minus: 250 | append: " words" }}
+						{{ page.content | number_of_words | append: " words" }}
 						{% endcapture %}
 						{% capture time %}
 						{{ words | plus: 250 | divided_by: 180 | append: " minute read" }}
