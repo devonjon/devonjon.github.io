@@ -8,7 +8,7 @@ def doc(n)
 end
 
 # puts doc(1)
-
+all_data = []
 # article      = Nokogiri::HTML(Net::HTTP.get(URI("https://www.menshealth.com/nutrition/a19530409/ketogenic-ketosis-diet-for-beginners/")))
 doc(1).css('a').each do |a|
 	link = "https://www.menshealth.com#{a['href']}"
@@ -44,15 +44,20 @@ doc(1).css('a').each do |a|
 		div.set_attribute("class", "")
 	end
 	x = {
-		content: content,
+		content: content.inner_html,
 		heading: heading,
 		subheading: subheading,
 		images: images
 	}
 	puts x
+	all_data << x
 	break
 # puts heading.to_s + subheading.to_s + content.inner_html.gsub(/\s{2,}/, "")
 words = heading.inner_text
 lines = words.split.each_slice(4).map {|e| e.join(" ")}
 
+end
+
+File.open("./mens-health.json","w") do |f|
+  f.write({data: all_data}.to_json)
 end

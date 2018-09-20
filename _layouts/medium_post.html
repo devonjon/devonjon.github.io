@@ -3,7 +3,7 @@
 {% assign date =  page.date | date_to_string  %}
 {% assign desc =  page.content | strip_html %}
 {% assign trunc = desc | truncatewords: 100 %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" ⚡>
 {% include medium_post_head.html
 	date=date

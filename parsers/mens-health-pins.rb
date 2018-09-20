@@ -10,7 +10,7 @@ ACCESS_TOKEN = 'AojyYd6HfeGAtpgxWQPWQrBgDO1iFU4n8H4-0-lFL8JF6-Aw4AmvgDAAAZo1RS_E
 
 data = nil
 
-File.open("./data/darebee.json","r") do |f|
+File.open("./mens-health.json","r") do |f|
 	data = eval f.read
 end
 start = Time.now
@@ -27,6 +27,7 @@ data[:data].each_with_index do |d, i|
 		new_height = new_width/2*3
 		width = image.width
 		trim = (width-new_width)/2
+		words = d[:heading]
 		`convert ./_temp_data/img.jpg -gravity East -crop #{image.width}x#{image.height}+#{trim}-0 ./_temp_data/img-out.jpg`
 		`convert ./_temp_data/img-out.jpg -gravity West -crop #{image.width}x#{image.height}+#{trim}-0 ./_temp_data/img-fin.jpg`
 		`convert -background '#0006' -fill white -gravity center -size #{new_width/1.2}x#{image.height/1.2} \
