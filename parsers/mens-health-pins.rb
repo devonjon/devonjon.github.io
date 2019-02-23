@@ -17,6 +17,7 @@ start = Time.now
 data[:data].each_with_index do |d, i|
 	# while Time.now-start < 3600
 	# end
+	puts d
 	d[:images].each_with_index do |img, n|
 		a =  Net::HTTP.get(URI(img))
 		File.open("./_temp_data/img.jpg", "w") do |f|
@@ -37,12 +38,12 @@ data[:data].each_with_index do |d, i|
 		success = false
 		while not success do 
 			puts "hey"
-			break
+			puts d
 			reply = @client.create_pin({
 				board: '697917342193270569',
 				note: "#{d[:text]}",
-				link: "https://enthrone.me/#{d[:name].gsub(' ','-')}",
-				image: Faraday::UploadIO.new("./_temp_data/img-comp-#{n}", "image/jpg")
+				link: "https://enthrone.me/#{d[:heading].gsub(' ','-')}",
+				image: Faraday::UploadIO.new("./_temp_data/img-comp-#{n}.jpg", "image/jpg")
 			})
 			puts i
 			puts reply

@@ -46,11 +46,13 @@ $(function() {
     var loadedPosts = 0,
         postCount = $(".post-list").children().length,
         callback = function() {
+          console.log($(".post-list").children().length)
           loadedPosts++;
           var postIndex = postCount + loadedPosts;
           
           if (postIndex > postURLs.length-1) {
             disableFetching();
+            console.log('disabled fetching')
             return;
           }
           
@@ -66,9 +68,9 @@ $(function() {
 	
   function fetchPostWithIndex(index, callback) {
     var postURL = postURLs[index];
-		
+		console.log(postURL)
     $.get(postURL, function(data) {
-      $(data).find(".post").appendTo(".post-list");
+      $(data).find(".post").appendTo(".end");
       callback();
     });
   }

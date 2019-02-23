@@ -4,7 +4,7 @@ require 'mini_magick'
 
 fitness = "https://www.menshealth.com/ajax/infiniteload/?id=141bd6a9-6a2f-4f06-90d8-b81b0768340f&class=CoreModels%5Csections%5CSectionModel&viewset=section&page=2&cachebuster=1fe28f77-0c81-46d4-9cb5-848037d21b4b"
 def doc(n)
-	Nokogiri::HTML(Net::HTTP.get(URI("https://www.menshealth.com/ajax/infiniteload/?id=f07c83cb-d962-4ab0-882e-98cd878698c8&class=CoreModels%5Csections%5CSectionModel&viewset=section&page=#{n}&cachebuster=0c161148-47bc-4b0f-9256-2d40c702a583")))
+	Nokogiri::HTML(Net::HTTP.get(URI("https://www.menshealth.com/ajax/infiniteload/?id=f07c83cb-d962-4ab0-882e-98cd878698c8&class=CoreModels%5Csections%5CSectionModel&viewset=section&page=#{n}&cachebuster=0c161148-47bc-4b0f-9256-2d40c702a583"))).css('a.full-item-title.item-title')
 end
 
 # puts doc(1)
@@ -44,20 +44,55 @@ doc(1).css('a').each do |a|
 		div.set_attribute("class", "")
 	end
 	x = {
-		content: content.inner_html,
+		original_link: link,
+		content: content.inner_html.strip,
+		lede: subheading,
 		heading: heading,
 		subheading: subheading,
 		images: images
 	}
-	puts x
 	all_data << x
-	break
 # puts heading.to_s + subheading.to_s + content.inner_html.gsub(/\s{2,}/, "")
-words = heading.inner_text
-lines = words.split.each_slice(4).map {|e| e.join(" ")}
+# words = heading.inner_text
+# lines = words.split.each_slice(4).map {|e| e.join(" ")}
 
 end
 
-File.open("./mens-health.json","w") do |f|
-  f.write({data: all_data}.to_json)
+# File.open("/Users/devonjon/Code/devonjon.github.io/parsers/data/mens-health.json","w") do |f|
+#   f.write({data: all_data}.to_json)
+# end
+
+def title(t)
+	"#{2017}-#{Time.now.month}-#{Time.now.day}-#{t.gsub(' ', '-')}"
+end
+
+def frontmatter(title, original_link, lede, image)
+	split = original_link.split('.com/').last.split('/')
+	cat = split.first
+	link = split.join('-')
+	"---" +
+	"\nlayout: medium_post" + 
+	"\ntitle:  #{title}" +
+	"\ndate:   2017-08-25" +
+	"\ncategories: #{cat} menshealth" +
+	"\npermalink: #{link}" +
+	"\nauthor: jack\n" +
+	"\nlede: #{lede}" +
+	"\nimage: #{image}" +
+	"\n---"
+end
+
+# data = nil
+# File.open("/Users/devonjon/Code/devonjon.github.io/parsers/data/mens-health.json","r") do |f|
+# 	data = eval f.read
+# end
+
+all_data.each do |d|
+	file_name = title(d[:heading])
+	pre = frontmatter(d[:heading], d[:original_link], d[:lede], d[:images][0]).strip
+	a = "<i>This article was originally posted at</i> <a href='#{d[:original_link]}'>menshealth.com</a><br><br>\n"
+	b = "<p>#{d[:content]}</p>\n"
+	File.open("/Users/devonjon/Code/devonjon.github.io/_posts/#{file_name}.html", 'w') do |f|
+		f.puts pre + "\n" + a + b
+	end
 end

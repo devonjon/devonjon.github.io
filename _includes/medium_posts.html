@@ -1,10 +1,11 @@
 
 <section class="recent-posts">
 	<div class="section-title">
-		<h2><span>All Stories</span></h2>
+		<h2><span>Most Popular</span></h2>
 	</div>
 	<div class="card-columns listrecent">
-		{% for post in site.posts limit: 4 %}
+		{% for post in site.posts %}
+				{% if post.categories contains include.tagg %}
 		{% assign author = site.data.authors[post.author] %}
 		{% assign date =  post.date | date_to_string  %}
 		{% assign desc =  post.content | strip_html %}
@@ -24,6 +25,7 @@
 			href=post.permalink
 			words=words
 			time=time %}
+			{% endif %}
 			{% endfor %}
 		</div>
 	</section>

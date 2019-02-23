@@ -7,20 +7,18 @@
 		<div class="mainheading">
 			<h1 class="sitetitle">Enthrone</h1>
 			<p class="lead">
-				Be the best human that you can be
+				{{page.lead}}
 			</p>
 		</div>
 		<section class="recent-posts">
 			<div class="section-title">
-				<h2><span>Workouts</span></h2>
+				<h2><span>{{page.title}}</span></h2>
 			</div>
-			<div class="card-columns listrecent">
+			<div class="card-columns listrecent post-list">
 
-				{% capture tag %}{{ page.title | slugify }}{% endcapture %}
-
-				{% for post in site.posts limit: 10 %}
+				{% capture tag %}{{ page.used_tag | slugify }}{% endcapture %}
+				{% for post in site.posts limit:10 %}
 				{% if post.categories contains tag %}
-
 				{% assign author = site.data.authors[post.author] %}
 				{% assign date =  post.date | date_to_string  %}
 				{% assign desc =  post.content | strip_html %}
@@ -34,7 +32,7 @@
 					title=post.title
 					author=author
 					image=post.image
-					lede=desc
+					lede=post.lede
 					date=date
 					href=post.permalink
 					words=words
@@ -46,6 +44,8 @@
 			</section>
 		</div>
 	</section>
+	<div class="end">
+	</div>
 	<div class="hideshare"></div>
 	{% include medium_alert.html %}
 	{% include medium_footer.html %}
