@@ -5,9 +5,11 @@
         <div class="col-md-8 col-md-offset-2 col-xs-12">
             {% for post in site.posts %}  
                 {% if post.categories contains include.tagg %}
+                <div class="card-block">
             <div class="mainheading"><h1 class="posttitle">{{post.title}}</h1>
             </div>
                 {{ post.content | truncatewords: 100 }}
+            </div>
                 <a href={{post.url}}>Read more...</a>
                 {% endif %}
                 {% endfor %}
