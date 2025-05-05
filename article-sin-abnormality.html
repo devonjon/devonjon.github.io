@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Abnormality of Sin | Theological Reflections</title>
+    <style>
+        :root {
+            --primary-color: #2d545e;
+            --secondary-color: #e0c9a6;
+            --text-color: #333;
+            --background-color: #f8f5f0;
+            --accent-color: #964b00;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Palatino', 'Book Antiqua', serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a3238);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .article-meta {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .article-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content p:first-of-type::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-right: 10px;
+            color: var(--primary-color);
+        }
+
+        blockquote {
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px 25px;
+            margin: 20px 0;
+            background-color: rgba(224, 201, 166, 0.2);
+            font-style: italic;
+        }
+
+        blockquote cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .scripture {
+            background-color: rgba(45, 84, 94, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .scripture-reference {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .divider::before {
+            margin-right: 15px;
+        }
+
+        .divider::after {
+            margin-left: 15px;
+        }
+
+        .divider-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .cross-divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .cross-divider::before,
+        .cross-divider::after {
+            content: '—';
+            color: var(--secondary-color);
+            margin: 0 15px;
+        }
+
+        .article-footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .article-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+
+        .nav-previous,
+        .nav-next {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            max-width: 45%;
+        }
+
+        .nav-previous a,
+        .nav-next a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-previous:hover,
+        .nav-next:hover {
+            background-color: var(--primary-color);
+        }
+
+        .nav-previous:hover a,
+        .nav-next:hover a {
+            color: white;
+        }
+
+        .nav-previous::before {
+            content: '← ';
+        }
+
+        .nav-next::after {
+            content: ' →';
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 0;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .article-content {
+                padding: 25px;
+            }
+
+            .article-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Theological Reflections</h1>
+        <p>Exploring faith, scripture, and spiritual understanding in today's world</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="articles.html">Articles</a></li>
+            <li><a href="scripture.html">Scripture Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+            <div class="article-header">
+                <h1>The Abnormality of Sin</h1>
+                <div class="article-meta">Published on May 5, 2025 | Theological Ethics</div>
+            </div>
+
+            <div class="article-content">
+                <div class="scripture">
+                    <p>Therefore, just as sin entered the world through one man, and death through sin, and in this way
+                        death came to all people, because all sinned.</p>
+                    <div class="scripture-reference">Romans 5:12</div>
+                </div>
+
+                <p>We have a tendency as humans to try and justify ourselves, our friends, our loved ones and even
+                    strangers. We use phrases like, "He's only human" - which is true, we are only human. The issue is
+                    that that doesn't excuse us from sin, but in fact re-affirms our sin. We justify ourselves by
+                    excusing ourselves based on our frailty. We normalise sin, and we normalise sinful behaviour.
+                    Whereas God teaches us that sin is abnormal and holiness is normal. Sin is not relatively worse than
+                    holiness, and holiness is not relatively better than sin. Instead, holiness is held as a complete
+                    distinction from sin. We are not merely defective, we are dead. Sin is death, and holiness is life.
+                    Sin kills, holiness brings life.</p>
+
+                <div class="cross-divider">✝</div>
+
+                <p>Jesus did not die on the cross to raise us from one level of humanity to another, but to raise us
+                    from death into life. He did not die to make us eternally abnormal, but to bring us back to eternal
+                    normality. While we live on earth, we are perceived as abnormal only because we are citizens of
+                    another kingdom, under the rule of another king. So let us live as though we are, and though the
+                    world may call us abnormal, let us never call sin normal or justify the evil intentions of our
+                    hearts.</p>
+
+                <blockquote>
+                    "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."
+                    <cite>— Romans 6:23</cite>
+                </blockquote>
+
+                <p>Let us rather go to Jesus as humble beneficiaries of justification and mourn over our sin and long
+                    for His holiness.</p>
+            </div>
+
+            <div class="article-footer">
+                <div class="article-tags">
+                    <a href="#" class="tag">Sin</a>
+                    <a href="#" class="tag">Holiness</a>
+                    <a href="#" class="tag">Justification</a>
+                    <a href="#" class="tag">Christian Living</a>
+                </div>
+
+                <div class="article-nav">
+                    <div class="nav-previous">
+                        <a href="#">Grace in Everyday Life</a>
+                    </div>
+                    <div class="nav-next">
+                        <a href="#">Kingdom Citizenship</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Theological Reflections. All rights reserved.
+        </p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+
+</html>

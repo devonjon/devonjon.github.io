@@ -1,1 +1,435 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theological Reflections</title>
+    <style>
+        :root {
+            --primary-color: #2d545e;
+            --secondary-color: #e0c9a6;
+            --text-color: #333;
+            --background-color: #f8f5f0;
+            --accent-color: #964b00;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Palatino', 'Book Antiqua', serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a3238);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .featured-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        article {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            font-weight: normal;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        blockquote {
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px 25px;
+            margin: 20px 0;
+            background-color: rgba(224, 201, 166, 0.2);
+            font-style: italic;
+        }
+
+        blockquote cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .scripture {
+            background-color: rgba(45, 84, 94, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .scripture-reference {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .grid-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px var(--shadow-color);
+        }
+
+        .grid-item h3 {
+            margin-top: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--secondary-color), #d4b882);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-box h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #1a3238;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 0;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .featured-content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Special theological elements */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .divider::before {
+            margin-right: 15px;
+        }
+
+        .divider::after {
+            margin-left: 15px;
+        }
+
+        .divider-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Cross symbol divider */
+        .cross-divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .cross-divider::before,
+        .cross-divider::after {
+            content: '—';
+            color: var(--secondary-color);
+            margin: 0 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Theological Reflections</h1>
+        <p>Exploring faith, scripture, and spiritual understanding in today's world</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="articles.html">Articles</a></li>
+            <li><a href="scripture.html">Scripture Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="featured-content">
+            <h2>Welcome to Theological Reflections</h2>
+            <p>This space is dedicated to thoughtful exploration of theological concepts, scripture analysis, and
+                spiritual growth. Here you'll find articles, reflections, and studies that aim to deepen understanding
+                and inspire faith.</p>
+            <p>Feel free to explore the content, engage with the ideas presented, and join in the conversation as we
+                seek wisdom and truth together.</p>
+        </section>
+
+        <article>
+            <h2>Latest Reflection</h2>
+            <h3>The Concept of Grace in Modern Context</h3>
+            <p>In today's rapidly changing world, the theological concept of grace takes on new dimensions and
+                applications. How do we understand and embody grace in our interactions, our systems, and our approach
+                to complex social issues?</p>
+
+            <div class="scripture">
+                <p>For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift
+                    of God—not by works, so that no one can boast.</p>
+                <div class="scripture-reference">Ephesians 2:8-9</div>
+            </div>
+
+            <p>The radical nature of grace challenges our merit-based society and invites us to reconsider how we relate
+                to others and to ourselves. When we truly grasp grace, it transforms not only our theology but our
+                entire approach to life and community.</p>
+
+            <blockquote>
+                Grace is not just a theological concept but a lived reality that reshapes how we see ourselves, others,
+                and the divine.
+                <cite>— Contemporary Theological Reflections</cite>
+            </blockquote>
+
+            <p>This ongoing exploration will examine historical understandings of grace across different theological
+                traditions while considering practical applications for contemporary life.</p>
+        </article>
+
+        <div class="cross-divider">✝</div>
+
+        <section>
+            <h2>Theological Topics</h2>
+            <div class="content-grid">
+                <div class="grid-item">
+                    <h3>Scripture Studies</h3>
+                    <p>In-depth explorations of biblical texts, considering historical context, interpretive approaches,
+                        and contemporary applications.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Faith Practices</h3>
+                    <p>Examining spiritual disciplines and practices that nurture faith and deepen our connection with
+                        the divine and with community.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Theological Concepts</h3>
+                    <p>Exploration of key theological ideas and their evolution through history and across different
+                        traditions and contexts.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Ethics & Society</h3>
+                    <p>Considering how theological understanding informs ethical decision-making and engagement with
+                        social issues.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-box">
+            <h3>Join the Conversation</h3>
+            <p>Subscribe to receive new theological reflections and participate in the ongoing dialogue about faith,
+                scripture, and spiritual growth.</p>
+            <a href="#" class="btn">Subscribe</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Theological Reflections. All rights reserved.
+        </p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+
+</html>
